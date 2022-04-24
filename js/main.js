@@ -137,7 +137,7 @@ function goGet(){
         }
         // let slimIngredients = ingredients.filter(e => e != undefined).join(':').toLowerCase().split(':')
         ingredients = ingredients.filter(e => e != undefined)
-        return ingredients.filter(e => e != "").join(':').toLowerCase().split(' ').join('_').split(':')
+        return ingredients.filter(e => e != "")
     }
 
     
@@ -160,11 +160,31 @@ function goGet(){
                 .then(data => {
                     forEachCounter2++
                     let drinkIngredients = findValueByPrefix(data.drinks[0], 'strIngredient')
+                    let drinkIngredientsFormatted = drinkIngredients.join(':').toLowerCase().split(' ').join('_').split(':')
                     let drinkMeasurements = findValueByPrefix(data.drinks[0], 'strMeasure')
                     // console.log(drinkIngredients)
-                    if(drinkIngredients.filter(e => !userSelected.includes(e)).length == 0){
+                    if(drinkIngredientsFormatted.filter(e => !userSelected.includes(e)).length == 0){
                         // console.log(data.drinks[0])
                         const drinkButton = document.createElement('button')
+                        drinkButton.addEventListener('click',showMeTheDrink)
+                        function showMeTheDrink(){
+                            // Clear any drink that is already shown
+                            document.querySelector('.drinkImage').src = ''
+                            document.querySelector('.drinkImage').alt = ''
+                            document.querySelector('.drinkName').innerText = ''
+                            document.querySelector('.drinkInstructions').innerText = ''
+                            document.querySelector('.drinkIngredients').innerHTML = ''
+                            // Add new drink info
+                            document.querySelector('.drinkImage').src = data.drinks[0].strDrinkThumb
+                            document.querySelector('.drinkImage').alt = data.drinks[0].strDrink
+                            document.querySelector('.drinkName').innerText = data.drinks[0].strDrink
+                            document.querySelector('.drinkInstructions').innerText = data.drinks[0].strInstructions
+                            for(let i = 0; i < drinkIngredients.length; i++){
+                                const li = document.createElement('li')
+                                document.querySelector('.drinkIngredients').appendChild(li)
+                                li.innerText = `${drinkIngredients[i]} | ${drinkMeasurements}`
+                            }
+                        }
                         document.querySelector('.buttonContainer').appendChild(drinkButton)
                         drinkButton.innerText = data.drinks[0].strDrink
                     }
@@ -204,8 +224,8 @@ function seeAllIngredients(){
         document.querySelector('.seeAll').innerText = 'Hide Ingredients'
         const alcoholicHeader = document.createElement('h3')
         const nonAlcoholicHeader = document.createElement('h3')
-        alcoholicHeader.innerText = 'Alcoholic Ingredients'
-        nonAlcoholicHeader.innerText = 'Non-Alcoholic Ingredients'
+        alcoholicHeader.innerText = 'Primary Alcoholic Ingredients'
+        nonAlcoholicHeader.innerText = 'Other Ingredients'
         document.querySelector('.checkboxContainer1').appendChild(alcoholicHeader)
         document.querySelector('.checkboxContainer2').appendChild(nonAlcoholicHeader)
 
