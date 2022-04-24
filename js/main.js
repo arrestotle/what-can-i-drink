@@ -137,7 +137,7 @@ function goGet(){
         }
         // let slimIngredients = ingredients.filter(e => e != undefined).join(':').toLowerCase().split(':')
         ingredients = ingredients.filter(e => e != undefined)
-        return ingredients.filter(e => e != "").join(':').toLowerCase().split(' ').join('_').split(':')
+        return ingredients.filter(e => e != "")
     }
 
     
@@ -160,11 +160,18 @@ function goGet(){
                 .then(data => {
                     forEachCounter2++
                     let drinkIngredients = findValueByPrefix(data.drinks[0], 'strIngredient')
+                    let drinkIngredientsFormatted = drinkIngredients.join(':').toLowerCase().split(' ').join('_').split(':')
                     let drinkMeasurements = findValueByPrefix(data.drinks[0], 'strMeasure')
                     // console.log(drinkIngredients)
-                    if(drinkIngredients.filter(e => !userSelected.includes(e)).length == 0){
+                    if(drinkIngredientsFormatted.filter(e => !userSelected.includes(e)).length == 0){
                         // console.log(data.drinks[0])
                         const drinkButton = document.createElement('button')
+                        drinkButton.addEventListener('click',showMeTheDrink)
+                        function showMeTheDrink(){
+                            document.querySelector('.drinkImage').src = data.drinks[0].strDrinkThumb
+                            document.querySelector('.drinkName').innerText = data.drinks[0].strDrink
+                            document.querySelector('.drinkInstructions').innerText = data.drinks[0].strInstructions
+                        }
                         document.querySelector('.buttonContainer').appendChild(drinkButton)
                         drinkButton.innerText = data.drinks[0].strDrink
                     }

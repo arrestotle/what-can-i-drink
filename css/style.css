@@ -51,6 +51,24 @@ label {
   font-size: 2rem;
 }
 
+.getDrinks {
+  padding: 1rem;
+  font-size: 3.2rem;
+  font-weight: 700;
+  background: lightskyblue;
+  border: 3px solid blue;
+  border-radius: 5px;
+  color: blue;
+}
+
+.drinkName {
+  font-size: 3.2rem;
+}
+
+.drinkInstructions {
+  font-size: 2.4rem;
+}
+
 /******************************************
 /* LAYOUT
 /*******************************************/
@@ -88,6 +106,21 @@ h1, .checkboxContainer1 h3, .checkboxContainer2 h3 {
 .getDrinks {
   position: fixed;
   bottom: 50px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.drinkInfoContainer {
+  display: grid;
+  justify-content: center;
+}
+
+.drinkImage {
+  width: 75%;
+  justify-self: center;
 }
 
 /******************************************
