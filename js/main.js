@@ -125,6 +125,7 @@ function goGet(){
             })
     })
 
+    
     // Creates array of ingredients or measurements for given drink
 
     function findValueByPrefix(object, prefix) {
