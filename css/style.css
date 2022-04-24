@@ -35,38 +35,89 @@ html * {
 
 h1 {
   font-size: 8rem;
+  color: blue;
+  font-weight: 700;
 }
 
 .addIngredient {
   font-size: 2.4rem;
   padding: 0em 0.4em;
   font-weight: 900;
+  color: blue;
+  background-color: lightskyblue;
+  border: none;
+  border-radius: 5px;
+}
+
+.seeAll {
+  color: blue;
+  background-color: lightskyblue;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.8rem;
+  padding: 1rem;
 }
 
 h3 {
   font-size: 3.2rem;
+  color: blue;
 }
 
 label {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  color: blue;
 }
 
 .getDrinks {
-  padding: 1rem;
+  padding: 1rem 2rem;
   font-size: 3.2rem;
   font-weight: 700;
   background: lightskyblue;
-  border: 3px solid blue;
+  border: none;
   border-radius: 5px;
   color: blue;
 }
 
+.inputContainer input {
+  padding: 1rem;
+  border: 1px solid lightskyblue;
+  border-radius: 5px;
+  color: blue;
+}
+
+.buttonContainer {
+  border-top: 5px solid blue;
+  margin: 5rem;
+}
+
+.buttonContainer button {
+  color: blue;
+  background-color: lightskyblue;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.8rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+
 .drinkName {
   font-size: 3.2rem;
+  color: blue;
+}
+
+.drinkImage {
+  border-radius: 10px;
+}
+
+.drinkIngredients li {
+  margin: 1rem;
+  font-size: 2.4rem;
+  color: blue;
 }
 
 .drinkInstructions {
   font-size: 2.4rem;
+  color: blue;
 }
 
 /******************************************
@@ -103,24 +154,40 @@ h1, .checkboxContainer1 h3, .checkboxContainer2 h3 {
   grid-template-columns: 1fr 3fr;
 }
 
+.checkboxContainer1 label, .checkboxContainer2 label, .checkboxContainer1 input, .checkboxContainer2 input{
+  margin: 2rem;
+  margin-bottom: 0;
+}
+
 .getDrinks {
   position: fixed;
   bottom: 50px;
+  z-index: 10
 }
 
 .buttonContainer {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .drinkInfoContainer {
   display: grid;
   justify-content: center;
+  margin-bottom: 200px;
 }
 
 .drinkImage {
   width: 75%;
   justify-self: center;
+}
+
+button {
+  margin: 0.5rem;
+}
+
+.inputContainer input {
+  margin: 0.5rem;
 }
 
 /******************************************

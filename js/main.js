@@ -168,9 +168,22 @@ function goGet(){
                         const drinkButton = document.createElement('button')
                         drinkButton.addEventListener('click',showMeTheDrink)
                         function showMeTheDrink(){
+                            // Clear any drink that is already shown
+                            document.querySelector('.drinkImage').src = ''
+                            document.querySelector('.drinkImage').alt = ''
+                            document.querySelector('.drinkName').innerText = ''
+                            document.querySelector('.drinkInstructions').innerText = ''
+                            document.querySelector('.drinkIngredients').innerHTML = ''
+                            // Add new drink info
                             document.querySelector('.drinkImage').src = data.drinks[0].strDrinkThumb
+                            document.querySelector('.drinkImage').alt = data.drinks[0].strDrink
                             document.querySelector('.drinkName').innerText = data.drinks[0].strDrink
                             document.querySelector('.drinkInstructions').innerText = data.drinks[0].strInstructions
+                            for(let i = 0; i < drinkIngredients.length; i++){
+                                const li = document.createElement('li')
+                                document.querySelector('.drinkIngredients').appendChild(li)
+                                li.innerText = `${drinkIngredients[i]} | ${drinkMeasurements}`
+                            }
                         }
                         document.querySelector('.buttonContainer').appendChild(drinkButton)
                         drinkButton.innerText = data.drinks[0].strDrink
@@ -211,8 +224,8 @@ function seeAllIngredients(){
         document.querySelector('.seeAll').innerText = 'Hide Ingredients'
         const alcoholicHeader = document.createElement('h3')
         const nonAlcoholicHeader = document.createElement('h3')
-        alcoholicHeader.innerText = 'Alcoholic Ingredients'
-        nonAlcoholicHeader.innerText = 'Non-Alcoholic Ingredients'
+        alcoholicHeader.innerText = 'Primary Alcoholic Ingredients'
+        nonAlcoholicHeader.innerText = 'Other Ingredients'
         document.querySelector('.checkboxContainer1').appendChild(alcoholicHeader)
         document.querySelector('.checkboxContainer2').appendChild(nonAlcoholicHeader)
 
