@@ -7,18 +7,26 @@ document.querySelector('.original').value = ''
 // Main variables
 
 let userSelected = []
+let ingList = []
 
 let userSelectedLowerCase
 
 const ingidLink = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?iid='
 
+const ingListLink = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
 
 
-// fetch(ingidLink + 1)
-//     .then(res => res.json())
-//     .then(data => {
-//         console.log(data.ingredients[0].strIngredient)
-//     })
+
+fetch(ingListLink)
+    .then(res => res.json())
+    .then(data => {
+        data.drinks.forEach(ing => {
+            ingList.push(ing.strIngredient1)
+        })
+    })
+    .catch(err => {
+        console.log(`error ${err}`)
+    })
 
 
 // Fetch all 615 ingredients and separate into alchoholic and non-alcoholic
@@ -71,10 +79,10 @@ function boxChecked(evt){
 document.querySelector('.getDrinks').addEventListener('click', goGet)
 
 function goGet(){
+    console.log(ingList)
     console.log(alcoholicIngredients.sort())
     console.log(nonAlcoholicIngredients.sort())
     console.log(alcoholicIngredients.length + nonAlcoholicIngredients.length)
-
 
         // Clears //////////////////////////
 
@@ -90,6 +98,13 @@ function goGet(){
 
 
         // End Clears //////////////////////
+
+    // Filter userselected by ingList
+
+    let ingListFormatted = ingList.join(':').toLowerCase().split(' ').join('_').split(':')
+    // .filter(e => ingListFormatted.includes(e))
+
+
 
     let allIngredients = alcoholicIngredients.concat(nonAlcoholicIngredients).join(':').toLowerCase().split(':')
     
@@ -113,7 +128,10 @@ function goGet(){
 
     let forEachCounter = 0
 
-    userSelected.forEach(ing => {
+
+    console.log(userSelected.filter(e => ingListFormatted.includes(e)))
+
+    userSelected.filter(e => ingListFormatted.includes(e)).forEach(ing => {
         fetch(ingSearch + ing)
             .then(res => res.json())
             .then(data => {
@@ -121,7 +139,7 @@ function goGet(){
                     ingDrinkList.push(drink.idDrink)
                 })
                 forEachCounter++
-                if(forEachCounter === userSelected.length){
+                if(forEachCounter === userSelected.filter(e => ingListFormatted.includes(e)).length){
                     afterForEach1()
                 }
             })
