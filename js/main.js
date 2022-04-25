@@ -82,6 +82,11 @@ function goGet(){
     document.querySelector('.checkboxContainer1').innerHTML = ''
     document.querySelector('.checkboxContainer2').innerHTML = ''
     document.querySelector('.buttonContainer').innerHTML = ''
+    document.querySelector('.drinkImage').src = ''
+    document.querySelector('.drinkImage').alt = ''
+    document.querySelector('.drinkName').innerText = ''
+    document.querySelector('.drinkInstructions').innerText = ''
+    document.querySelector('.drinkIngredients').innerHTML = ''
 
 
         // End Clears //////////////////////
