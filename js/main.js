@@ -35,6 +35,8 @@ alcoholicIngredients = []
 
 nonAlcoholicIngredients = []
 
+let everyPossibleIngredient = []
+
 let forCounter1 = 1
 
 for(let i = 1; i < 616; i++){
@@ -43,6 +45,9 @@ for(let i = 1; i < 616; i++){
         .then(res => res.json())
         .then(data => {
             forCounter1++
+            if(data.ingredients !== null){
+                everyPossibleIngredient.push(data.ingredients[0].strIngredient)
+            }
             if(data.ingredients !== null && data.ingredients[0].strAlcohol == 'Yes'){
                 alcoholicIngredients.push(data.ingredients[0].strIngredient)
             }else if(data.ingredients !== null && data.ingredients[0].strAlcohol == null){
@@ -248,10 +253,10 @@ function seeAllIngredients(){
         document.querySelector('.seeAll').innerText = 'Hide Ingredients'
         const alcoholicHeader = document.createElement('h3')
         const nonAlcoholicHeader = document.createElement('h3')
-        alcoholicHeader.innerText = 'Primary Alcoholic Ingredients'
-        nonAlcoholicHeader.innerText = 'Other Ingredients'
+        alcoholicHeader.innerText = `All Ingredients (${everyPossibleIngredient.length})`
+        // nonAlcoholicHeader.innerText = 'Other Ingredients'
         document.querySelector('.checkboxContainer1').appendChild(alcoholicHeader)
-        document.querySelector('.checkboxContainer2').appendChild(nonAlcoholicHeader)
+        // document.querySelector('.checkboxContainer2').appendChild(nonAlcoholicHeader)
 
         const allCheckboxes = document.querySelectorAll('input[type="checkbox"]')
 
@@ -259,7 +264,7 @@ function seeAllIngredients(){
         //     cb.checked = false
         // })
 
-        alcoholicIngredients.sort().forEach(ing => {
+        everyPossibleIngredient.sort().forEach(ing => {
             const checkbox = document.createElement('input')
             const label = document.createElement('label')
             checkbox.type = 'checkbox'
@@ -271,18 +276,18 @@ function seeAllIngredients(){
             document.querySelector('.checkboxContainer1').appendChild(checkbox)
             document.querySelector('.checkboxContainer1').appendChild(label)
         });
-        nonAlcoholicIngredients.sort().forEach(ing => {
-            const checkbox = document.createElement('input')
-            const label = document.createElement('label')
-            checkbox.type = 'checkbox'
-            checkbox.value = ing.split(' ').join('_').toLowerCase()
-            checkbox.name = ing.split(' ').join('_').toLowerCase()
-            checkbox.addEventListener('click', boxChecked)
-            label.for = ing.split(' ').join('_').toLowerCase()
-            label.innerText = ing
-            document.querySelector('.checkboxContainer2').appendChild(checkbox)
-            document.querySelector('.checkboxContainer2').appendChild(label)
-        });
+        // nonAlcoholicIngredients.sort().forEach(ing => {
+        //     const checkbox = document.createElement('input')
+        //     const label = document.createElement('label')
+        //     checkbox.type = 'checkbox'
+        //     checkbox.value = ing.split(' ').join('_').toLowerCase()
+        //     checkbox.name = ing.split(' ').join('_').toLowerCase()
+        //     checkbox.addEventListener('click', boxChecked)
+        //     label.for = ing.split(' ').join('_').toLowerCase()
+        //     label.innerText = ing
+        //     document.querySelector('.checkboxContainer2').appendChild(checkbox)
+        //     document.querySelector('.checkboxContainer2').appendChild(label)
+        // });
     }else{
         document.querySelector('.seeAll').innerText = 'See All Ingredients'
         document.querySelector('.checkboxContainer1').innerHTML = ''
