@@ -133,6 +133,14 @@ function goGet(){
 
     let forEachCounter = 0
 
+    if(userSelected.includes('absolut_vodka')){
+        userSelected.push('vodka')
+    }
+    if(userSelected.includes('rum') || userSelected.includes('light_rum') || userSelected.includes('dark_rum')){
+        userSelected.push('rum')
+        userSelected.push('light_rum')
+        userSelected.push('dark_rum')
+    }
 
     console.log(userSelected.filter(e => ingListFormatted.includes(e)))
 
