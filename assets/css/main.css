@@ -834,6 +834,10 @@ button,
 
 /* Drink Insert and Giant Container */
 
+.giantContainer {
+  margin-top: 10vh;
+}
+
 .giantTwo .special {
   display: flex;
   flex-direction: column;
@@ -952,6 +956,7 @@ html body {
   .giantContainer{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin-top: 0;
   }
   .giantTwo{
     margin-top: 0%;
