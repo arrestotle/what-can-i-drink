@@ -250,7 +250,58 @@
 													}
 													document.querySelector('.perfectMatch').appendChild(drinkButton)
                         							drinkButton.value = data.drinks[0].strDrink
-												}else{
+												}else if(drinkIngredientsFormatted.filter(e => !formUserType.includes(e)).length == 1 && document.querySelector('.notPerfect').childElementCount < 20){
+													console.log(document.querySelector('.notPerfect').length)
+													const drinkButton = document.createElement('input')
+													drinkButton.type = 'submit'
+													drinkButton.addEventListener('click',showMeTheDrink)
+													function showMeTheDrink(){
+														// Clear any drink that is already shown
+														document.querySelector('.drinkImage').src = ''
+														document.querySelector('.drinkImage').alt = ''
+														document.querySelector('.drinkName').innerText = ''
+														document.querySelector('.drinkInstructions').innerText = ''
+														document.querySelector('.proportions').innerHTML = ''
+														// Add new drink info
+														document.querySelector('.giantTwo').classList.remove('hidden')
+														document.querySelector('.drinkImage').src = data.drinks[0].strDrinkThumb
+														document.querySelector('.drinkImage').alt = data.drinks[0].strDrink
+														document.querySelector('.drinkName').innerText = data.drinks[0].strDrink
+														document.querySelector('.drinkInstructions').innerText = data.drinks[0].strInstructions
+														for(let i = 0; i < drinkIngredients.length; i++){
+															const li = document.createElement('li')
+															document.querySelector('.proportions').appendChild(li)
+															li.innerText = `${drinkIngredients[i]} | ${drinkMeasurements}`
+														}
+													}
+													document.querySelector('.notPerfect').appendChild(drinkButton)
+                        							drinkButton.value = data.drinks[0].strDrink
+												}else if(drinkIngredientsFormatted.filter(e => !formUserType.includes(e)).length == 2 && document.querySelector('.notPerfect').childElementCount < 20){
+													const drinkButton = document.createElement('input')
+													drinkButton.type = 'submit'
+													drinkButton.addEventListener('click',showMeTheDrink)
+													function showMeTheDrink(){
+														// Clear any drink that is already shown
+														document.querySelector('.drinkImage').src = ''
+														document.querySelector('.drinkImage').alt = ''
+														document.querySelector('.drinkName').innerText = ''
+														document.querySelector('.drinkInstructions').innerText = ''
+														document.querySelector('.proportions').innerHTML = ''
+														// Add new drink info
+														document.querySelector('.giantTwo').classList.remove('hidden')
+														document.querySelector('.drinkImage').src = data.drinks[0].strDrinkThumb
+														document.querySelector('.drinkImage').alt = data.drinks[0].strDrink
+														document.querySelector('.drinkName').innerText = data.drinks[0].strDrink
+														document.querySelector('.drinkInstructions').innerText = data.drinks[0].strInstructions
+														for(let i = 0; i < drinkIngredients.length; i++){
+															const li = document.createElement('li')
+															document.querySelector('.proportions').appendChild(li)
+															li.innerText = `${drinkIngredients[i]} | ${drinkMeasurements}`
+														}
+													}
+													document.querySelector('.notPerfect').appendChild(drinkButton)
+                        							drinkButton.value = data.drinks[0].strDrink
+												}else if(drinkIngredientsFormatted.filter(e => !formUserType.includes(e)).length == 3 && document.querySelector('.notPerfect').childElementCount < 20){
 													const drinkButton = document.createElement('input')
 													drinkButton.type = 'submit'
 													drinkButton.addEventListener('click',showMeTheDrink)

@@ -865,7 +865,8 @@ button,
 }
 
 .perfectMatch, .notPerfect {
-  height: 60px;
+  height: auto;
+  min-height: 50px;
   max-width: 100vw;
   display: flex;
   overflow-x: scroll;
