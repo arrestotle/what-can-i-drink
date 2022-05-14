@@ -148,8 +148,8 @@
 						console.log(formUserType) // test
 
 						// Clear any drink buttons
-						document.querySelector('.perfectMatch')
-						document.querySelector('.notPerfect')
+						document.querySelector('.perfectMatch').innerHTML = ''
+						document.querySelector('.notPerfect').innerHTML = ''
 
 						// Declare fetch URLs
 						const ingListLink = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'	// List of ingredients
